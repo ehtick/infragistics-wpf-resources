@@ -402,9 +402,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:XamDataLegend">
                     <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
-                        <Border BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}" 
+                        <Border BorderThickness="{TemplateBinding ActualBorderThickness}"
+                                BorderBrush="{TemplateBinding ActualBorderBrush}"
+                                Background="{TemplateBinding ActualBackground}" 
                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                             <Canvas x:Name="PART_CONTENT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             </Canvas>
@@ -1755,7 +1755,10 @@
 
     <!-- ******************* Pointer Tooltip Style ******************* -->
   <Style x:Key="PointerToolTipStyle" TargetType="local:PointerTooltip">
-    <Setter Property="Template">
+      <Setter Property="Background" Value="{StaticResource TooltipBackgroundBrush}" />
+      <Setter Property="BorderBrush" Value="{StaticResource TooltipBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="local:PointerTooltip">
           <Canvas x:Name="PART_RootCanvas">
@@ -1774,14 +1777,14 @@
               </ContentControl>
             </ContentControl>
             <Polygon x:Name="PART_POINTER"
-                     Fill="{StaticResource TooltipBackgroundBrush}"
+                     Fill="{TemplateBinding Background}"
                      StrokeLineJoin="Bevel"
                      Visibility="{TemplateBinding PointerVisibility}">
             </Polygon>
             <Polyline x:Name="PART_POINTEROUTLINE"
                       StrokeLineJoin="Bevel"
-                      Stroke="{StaticResource TooltipBorderBrush}"
-                      StrokeThickness="1"
+                      Stroke="{TemplateBinding BorderBrush}"
+                      StrokeThickness="{TemplateBinding BorderThickness}"
                       Visibility="{TemplateBinding PointerVisibility}">
             </Polyline>
           </Canvas>

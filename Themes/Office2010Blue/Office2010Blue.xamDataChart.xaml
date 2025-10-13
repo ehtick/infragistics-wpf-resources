@@ -1883,6 +1883,9 @@
 
     <!--  *********************************  Pointer Tooltip Style  *********************************  -->
     <Style x:Key="PointerToolTipStyle" TargetType="local:PointerTooltip">
+        <Setter Property="Background" Value="{StaticResource TooltipBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TooltipBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:PointerTooltip">
@@ -1897,11 +1900,14 @@
                                 <ContentPresenter Content="{TemplateBinding Content}" />
                             </ContentControl>
                         </ContentControl>
-                        <Polygon x:Name="PART_POINTER" Fill="{StaticResource TooltipBackgroundBrush}" StrokeLineJoin="Bevel" Visibility="{TemplateBinding PointerVisibility}" />
+                        <Polygon x:Name="PART_POINTER" 
+                                 Fill="{TemplateBinding Background}" 
+                                 StrokeLineJoin="Bevel" 
+                                 Visibility="{TemplateBinding PointerVisibility}" />
                         <Polyline x:Name="PART_POINTEROUTLINE"
                                   StrokeLineJoin="Bevel"
-                                  Stroke="{StaticResource TooltipBorderBrush}"
-                                  StrokeThickness="1"
+                                  Stroke="{TemplateBinding BorderBrush}"
+                                  StrokeThickness="{TemplateBinding BorderThickness}"
                                   Visibility="{TemplateBinding PointerVisibility}" />
                     </Canvas>
                 </ControlTemplate>
